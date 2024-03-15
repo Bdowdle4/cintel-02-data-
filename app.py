@@ -1,7 +1,8 @@
-#These are all of the inputs you need to make your outputs work
+# These are all of the inputs you need to make your outputs work
 import plotly.express as px
 from shiny.express import input, ui
 from shinywidgets import render_plotly
+
 # This package provides the Palmer Penguins dataset but you have to load it before you can use it
 from palmerpenguins import (
     load_penguins,
@@ -13,12 +14,12 @@ import pandas as pd
 # Use the built-in function to load the Palmer Penguins dataset
 penguins_df = load_penguins()
 
-#This creates a title for your visual pane
-ui.page_opts(title="Brittany's Data About Spectacular Penguins", fillable=True)
+# This creates a title for your visual pane
+ui.page_opts(title="Brittany's Data About Spectacular Penguins", fillable=False)
 
-#This adds a Shiny UI sidebar for user interaction. We will be adding a dropdown, numeric, and slider option
+# This adds a Shiny UI sidebar for user interaction. We will be adding a dropdown, numeric, and slider option
 with ui.sidebar(open="open"):
-    #This will add a 2nd level header to the sidebar
+    # This will add a 2nd level header to the sidebar
     ui.h2("Sidebar")
     ui.input_selectize(
         "selected_attribute",
@@ -40,32 +41,34 @@ with ui.sidebar(open="open"):
         selected=["Adelie"],
         inline=True,
     )
-   
-    #This will create a line to visually separate the widgets above and below it in the sidebar
+
+    # This will create a line to visually separate the widgets above and below it in the sidebar
     ui.hr()
-    #This will add in a hyperlink to another website
+    # This will add in a hyperlink to another website
     ui.a(
         "Brittany's GitHub Link to P2",
         href="https://github.com/Bdowdle4/cintel-02-data-",
         target="_blank",
     )
 
-#This will organize the Data Table and Data Grid into a Tabset with pill navigation to be more visually organized
-with ui.navset_pill(id="tab"): 
+# This will organize the Data Table and Data Grid into a Tabset with pill navigation to be more visually organized
+with ui.navset_pill(id="tab"):
     with ui.nav_panel("Data Table"):
+
         @render.data_frame
         def penguin_datatable():
             return render.DataTable(penguins_df)
 
     with ui.nav_panel("Data Grid"):
+
         @render.data_frame
         def penguin_datagrid():
             return render.DataGrid(penguins_df)
 
-#This will organize the Plotly Histogram, Seaborn Histogram, and the Plotly scatterplot into a card to separate from the above "Data's" amd be easier to see
-with ui.navset_card_pill(id="tab1"): 
-    
-    #These will connect the dropdown in the sidebar to the histogram to be interactive
+
+# This will organize the Plotly Histogram, Seaborn Histogram, and the Plotly scatterplot into a card to separate from the above "Data's" amd be easier to see
+with ui.navset_card_pill(id="tab1"):
+    # These will connect the dropdown in the sidebar to the histogram to be interactive
     with ui.nav_panel("Plotly Histogram"):
 
         @render_plotly
@@ -82,7 +85,7 @@ with ui.navset_card_pill(id="tab1"):
             )
             return plotly_hist
 
-    #These will connect the numeric in the sidebar to the histogram to be interactive
+    # These will connect the numeric in the sidebar to the histogram to be interactive
     with ui.nav_panel("Seaborn Histogram"):
 
         @render.plot
@@ -96,7 +99,7 @@ with ui.navset_card_pill(id="tab1"):
             seaborn_hist.set_xlabel("Selected Attribute")
             seaborn_hist.set_ylabel("Count")
 
-   #These will connect the checkboxes in the sidebar to the scatterplot to be interactive 
+    # These will connect the checkboxes in the sidebar to the scatterplot to be interactive
     with ui.nav_panel("Plotly Scatterplot"):
         ui.card_header("Plotly Scatterplot: Species")
 

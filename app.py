@@ -25,20 +25,20 @@ with ui.sidebar(open="open"):
         "Select Attribute",
         ["bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g"],
     )
-    ui.input_checkbox_group(
-        "selected_species_list",
-        "Select Species",
-        ["Adelie", "Gentoo", "Chinstrap"],
-        selected=["Adelie"],
-        inline=True,
-    )
     ui.input_numeric("plotly_bin_count", "Plotly Bin Count", 40)
     ui.input_slider(
         "seaborn_bin_count",
         "Seaborn Bin Count",
         1,
         100,
-        20,
+        40,
+    )
+    ui.input_checkbox_group(
+        "selected_species_list",
+        "Select Species",
+        ["Adelie", "Gentoo", "Chinstrap"],
+        selected=["Adelie"],
+        inline=True,
     )
    
     #This will create a line to visually separate the widgets above and below it in the sidebar

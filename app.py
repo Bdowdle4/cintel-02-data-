@@ -63,7 +63,7 @@ with ui.navset_pill(id="tab"):
             return render.DataGrid(penguins_df)
 
 #This will organize the Plotly Histogram, Seaborn Histogram, and the Plotly scatterplot into a card to separate from the above "Data's" amd be easier to see
-with ui.navset_card_pill(id="tab"): 
+with ui.navset_card_pill(id="tab1"): 
     
     #These will connect the dropdown in the sidebar to the histogram to be interactive
     with ui.nav_panel("Plotly Histogram"):
